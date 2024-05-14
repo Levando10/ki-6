@@ -1,0 +1,31 @@
+<div class="todo-wrap">
+
+    <mat-toolbar color="primary">
+        Todo App
+      </mat-toolbar>
+      
+      <div class="todo-container">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="What needs to be done?" [formControl]="content" (change)="change()">
+          <mat-error *ngIf="content.invalid && content.touched">
+            You need to enter content for the job.
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-list>
+          <mat-list-item *ngFor="let todo,index as i of todoGender;" >
+            <mat-checkbox  class="example-margin" [class.complete]="todo.complete" [(ngModel)]="todo.complete">{{todo.content}}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      
+        <mat-chip-listbox aria-label="Fish selection" class="actions">
+            <mat-label  class="itemLeft" *ngIf="itemRender > 1">{{itemRender}} items left</mat-label>
+            <mat-label class="itemLeft" *ngIf="itemRender <= 1">{{itemRender}} item left</mat-label>
+            <mat-chip-option (click)="viewAll()" >All</mat-chip-option>
+            <mat-chip-option (click)="viewActive()">Active</mat-chip-option>
+            <mat-chip-option (click)="viewCompleted()">Completed</mat-chip-option>
+            <button mat-raised-button (click)="clearAll()" color="primary" >Clear completed</button>
+            </mat-chip-listbox>
+      </div>
+      
+</div>
